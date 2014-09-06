@@ -13,9 +13,6 @@ module Octopress
         def initialize(tag_name, markup, tokens)
           super
 
-          @author = nil
-          @source = nil
-          @title = nil
           if markup =~ FullCiteWithTitle
             @author = $1
             @source = $2 + $3
@@ -32,23 +29,38 @@ module Octopress
         end
 
         def render(context)
-<<-QUOTE
-<figure class='quote'>
-<blockquote>#{super.strip}</blockquote>#{figcaption}
-</figure>
-QUOTE
+          quote = "<blockquote>#{parse_content(super, context).strip}</blockquote>"
+          if cap = figcaption
+            quote = "<figure class='quote'>#{quote}#{cap}</figure>"
+          end
+          quote
+        end
+
+        def parse_content(content, context)
+          path  = context.environments.first['page']['path']
+          ext   = File.extname(path[1..-1])[1..-1]
+          site  = context.registers[:site]
+          mdext = site.config['markdown_ext']
+          txext = site.config['textile_ext']
+
+          if mdext.include? ext
+            site.getConverterImpl(Jekyll::Converters::Markdown).convert(content)
+          elsif txext.include? ext
+            site.getConverterImpl(Jekyll::Converters::Textile).convert(content)
+          else
+            "<p>" + content.strip.gsub(/\n\n/, "<p>\n\n</p>") + "</p>"
+          end
         end
 
         def figcaption
-          "<figcaption class='quote-caption'>#{author}#{source}</figcaption>"
-
+          if @author || @source || @title
+            "<figcaption class='quote-caption'>#{author || ''}#{source || ''}</figcaption>"
+          end
         end
 
         def author
           if @author
             "<span class='quote-author'>#{@author}</span>"
-          else
-            ''
           end
         end
 
@@ -63,8 +75,6 @@ QUOTE
 
           if s
             "<cite class='quote-source'>#{s}</cite>"
-          else
-            ''
           end
         end
 
