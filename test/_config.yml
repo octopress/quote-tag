@@ -10,4 +10,4 @@ exclude:
 # Build settings
 markdown: kramdown
 gems:
-  - octopress-blockquote-tag
+  - octopress-quote-tag

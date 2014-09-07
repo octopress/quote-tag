@@ -1,6 +1,6 @@
 module Octopress
   module Tags
-    module BlockquoteTag
+    module QuoteTag
       VERSION = "1.0.0"
     end
   end

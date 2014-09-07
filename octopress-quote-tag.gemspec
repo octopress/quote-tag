@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'octopress-blockquote-tag/version'
+require 'octopress-quote-tag/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "octopress-blockquote-tag"
-  spec.version       = Octopress::Tags::BlockquoteTag::VERSION
+  spec.name          = "octopress-quote-tag"
+  spec.version       = Octopress::Tags::QuoteTag::VERSION
   spec.authors       = ["Brandon Mathis"]
   spec.email         = ["brandon@imathis.com"]
   spec.summary       = %q{Nicely formatted HTML5 blockquotes for Jekyll sites}
   spec.description   = %q{Nicely formatted HTML5 blockquotes for Jekyll sites}
-  spec.homepage      = "https://github.com/octopress/blockquote-tag"
+  spec.homepage      = "https://github.com/octopress/quote-tag"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
