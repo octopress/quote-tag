@@ -1,6 +1,6 @@
 # Octopress Quote Tag
 
-An HTML5 blockquote Liquid tag for Jekyll sites.
+Easy HTML5 blockquotes for Jekyll sites.
 
 [![Build Status](https://travis-ci.org/octopress/quote-tag.svg)](https://travis-ci.org/octopress/quote-tag)
 [![Gem Version](http://img.shields.io/gem/v/octopress-quote-tag.svg)](https://rubygems.org/gems/octopress-quote-tag)
@@ -8,22 +8,26 @@ An HTML5 blockquote Liquid tag for Jekyll sites.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+### Using Bundler
 
-    gem 'octopress-quote-tag'
+Add this gem to your site's Gemfile in the `:jekyll_plugins` group:
 
-And then execute:
+    group :jekyll_plugins do
+      gem 'octopress-quote-tag'
+    end
+
+Then install the gem with Bundler
 
     $ bundle
 
-Or install it yourself as:
+### Manual Installation
 
     $ gem install octopress-quote-tag
 
-Next add it to your gems list in Jekyll's `_config.yml`
+Then add the gem to your Jekyll configuration.
 
     gems:
-      - octopress-quote-tag
+      -octopress-quote-tag
 
 ## Usage
 

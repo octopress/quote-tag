@@ -128,3 +128,15 @@ end
 
 Liquid::Template.register_tag('blockquote', Octopress::Tags::QuoteTag::Tag)
 Liquid::Template.register_tag('quote', Octopress::Tags::QuoteTag::Tag)
+
+if defined? Octopress::Docs
+  Octopress::Docs.add({
+    name:        "Octopress Qote Tag",
+    gem:         "octopress-quote-tag",
+    description: "Easy HTML5 blockquotes for Jekyll sites.",
+    path:        File.expand_path(File.join(File.dirname(__FILE__), "../")),
+    source_url:  "https://github.com/octopress/quote-tag",
+    version:     Octopress::Tags::QuoteTag::VERSION
+  })
+end
+
