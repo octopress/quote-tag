@@ -1,10 +1,11 @@
 # coding: utf-8
 require "octopress-quote-tag/version"
+require "octopress-quote-tag/utils"
 require "jekyll"
 
 module Octopress
   module Tags
-    module QuoteTag
+    module Quote
       class Tag < Liquid::Block
         FullCiteWithTitle = /(\S.*)\s+(https?:\/\/)(\S+)\s+(.+)/i
         FullCite = /(\S.*)\s+(https?:\/\/)(\S+)/i
@@ -62,27 +63,11 @@ module Octopress
         end
 
         def render(context)
-          quote = "<blockquote>#{parse_content(super, context).strip}</blockquote>"
+          quote = "<blockquote>#{Utils.parse_content(super, context).strip}</blockquote>"
           if cap = figcaption
             quote = "<figure class='quote'>#{quote}#{cap}</figure>"
           end
           quote
-        end
-
-        def parse_content(content, context)
-          path  = context.environments.first['page']['path']
-          ext   = File.extname(path[1..-1])[1..-1]
-          site  = context.registers[:site]
-          mdext = site.config['markdown_ext']
-          txext = site.config['textile_ext']
-
-          if mdext.include? ext
-            site.getConverterImpl(Jekyll::Converters::Markdown).convert(content)
-          elsif txext.include? ext
-            site.getConverterImpl(Jekyll::Converters::Textile).convert(content)
-          else
-            "<p>" + content.strip.gsub(/\n\n/, "<p>\n\n</p>") + "</p>"
-          end
         end
 
         def figcaption
@@ -127,17 +112,17 @@ module Octopress
   end
 end
 
-Liquid::Template.register_tag('blockquote', Octopress::Tags::QuoteTag::Tag)
-Liquid::Template.register_tag('quote', Octopress::Tags::QuoteTag::Tag)
+
+Liquid::Template.register_tag('blockquote', Octopress::Tags::Quote::Tag)
+Liquid::Template.register_tag('quote', Octopress::Tags::Quote::Tag)
 
 if defined? Octopress::Docs
   Octopress::Docs.add({
     name:        "Octopress Quote Tag",
     gem:         "octopress-quote-tag",
-    description: "Easy HTML5 blockquotes for Jekyll sites.",
+    description: "Easy HTML5 blockquotes for Jekyll sites",
     path:        File.expand_path(File.join(File.dirname(__FILE__), "../")),
     source_url:  "https://github.com/octopress/quote-tag",
-    version:     Octopress::Tags::QuoteTag::VERSION
+    version:     Octopress::Tags::Quote::VERSION
   })
 end
-

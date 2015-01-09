@@ -5,7 +5,7 @@ require 'octopress-quote-tag/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "octopress-quote-tag"
-  spec.version       = Octopress::Tags::QuoteTag::VERSION
+  spec.version       = Octopress::Tags::Quote::VERSION
   spec.authors       = ["Brandon Mathis"]
   spec.email         = ["brandon@imathis.com"]
   spec.summary       = %q{Nicely formatted HTML5 blockquotes for Jekyll sites}
@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "jekyll"
+  spec.add_runtime_dependency "rubypants"
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"

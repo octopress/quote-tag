@@ -1,7 +1,7 @@
 module Octopress
   module Tags
-    module QuoteTag
-      VERSION = "1.0.2"
+    module Quote
+      VERSION = "1.0.3"
     end
   end
 end
