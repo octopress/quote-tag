@@ -32,9 +32,9 @@ Then add the gem to your Jekyll configuration.
 ## Usage
 
 ```
-{% blockquote [options] %}
+{% quote [options] %}
 Some great quote
-{% endblockquote %}
+{% endquote %}
 ```
 
 Options:
@@ -49,7 +49,7 @@ Options:
 ### Example
 
 ```
-{% quote author:"Bob McAwesome" url:"http://example.com" title:"Great Wisdom" %} 
+{% quote author:"Bob McAwesome" url:http://example.com title:"Great Wisdom" %} 
 Never pet a burning dog.
 {% endquote %}
 ```
@@ -68,8 +68,8 @@ Never pet a burning dog.
 
 ## Why?
 
-In Markdown Blockquotes are simple but attribution isn't.
-Also, if you want semantic HTML, you'll have to write your own.
+In Markdown Blockquotes are simple but attribution isn't. Also,
+writing the semantic HTML is tricky and easy to forget.
 
 ```
 > Some cool quote
@@ -82,7 +82,6 @@ Also, if you want semantic HTML, you'll have to write your own.
 ```
 
 But what if you want to cite an author or a source?
-
 
 ```
 > Some cool quote
@@ -101,3 +100,14 @@ Which doesn't work at all since a browser will see it as:
 ```
 Some cool quote - Bob McAwesome
 ```
+
+And now you know.
+
+## Contributing
+
+1. Fork it ( https://github.com/octopress/quote-tag/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
