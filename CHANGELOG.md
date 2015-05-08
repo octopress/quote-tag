@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.0.4 (2015-05-07)
+
+- Added space between author and title.
+
 ### 1.0.3 (2015-01-08)
 
 - Minor refactoring.

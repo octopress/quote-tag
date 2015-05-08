@@ -97,7 +97,9 @@ module Octopress
 
         def title
           if @options['title']
-            "<cite class='quote-title'>#{link(@options['title'])}</cite>"
+            t = "<cite class='quote-title'>#{link(@options['title'])}</cite>"
+            t = " #{t}" if author
+            t
           end
         end
 
