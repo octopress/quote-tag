@@ -9,10 +9,22 @@ module Octopress
           mdext = site.config['markdown_ext']
           txext = site.config['textile_ext']
 
+          markdown_converter = if site.respond_to?(:find_converter_instance)
+            site.find_converter_instance(Jekyll::Converters::Markdown)
+          else
+            site.getConverterImpl(Jekyll::Converters::Markdown)
+          end
+
+          textile_converter = if site.respond_to?(:find_converter_instance)
+            site.find_converter_instance(Jekyll::Converters::Textile)
+          else
+            site.getConverterImpl(Jekyll::Converters::Textile)
+          end
+
           if mdext.include? ext
-            site.getConverterImpl(Jekyll::Converters::Markdown).convert(content)
+            markdown_converter.convert(content)
           elsif txext.include? ext
-            site.getConverterImpl(Jekyll::Converters::Textile).convert(content)
+            textile_converter.convert(content)
           else
             "<p>" + content.strip.gsub(/\n\n/, "<p>\n\n</p>") + "</p>"
           end
@@ -21,4 +33,3 @@ module Octopress
     end
   end
 end
-
